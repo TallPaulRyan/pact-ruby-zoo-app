@@ -1,1 +1,0 @@
-# pact-ruby-zoo-app
