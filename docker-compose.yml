@@ -2,6 +2,7 @@ version: '3'
 
 services:
   zoo-app:
+    container_name: zoo-app
     tty: true
     stdin_open: true
     build:
