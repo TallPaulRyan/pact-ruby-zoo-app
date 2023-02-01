@@ -120,7 +120,7 @@ module ZooApp
         end
 
         it "raises an error" do
-          expect{ AnimalServiceClient.find_alligator_by_name("Mary") }.to raise_error /Argh/
+          expect{ AnimalServiceClient.find_seahawk_by_name("Geno") }.to raise_error /Argh/
         end
       end
     end
