@@ -109,7 +109,7 @@ module ZooApp
 
         before do
           animal_service.given("an error occurs retrieving a seahawk").
-            upon_receiving("a request for aa seahawk").with(
+            upon_receiving("a request for a seahawk").with(
               method: :get,
               path: '/seahawks/Geno',
               headers: {'Accept' => 'application/json'}).
