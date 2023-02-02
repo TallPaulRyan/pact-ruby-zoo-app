@@ -89,6 +89,26 @@ module ZooApp
         end
       end
 
+      context "when a seahawk by the given name exists" do
+
+        before do
+          animal_service.given("there is a seahawk named Russ").
+            upon_receiving("a request for a seahawk").with(
+              method: :get,
+              path: '/seahawks/Russ',
+              headers: {'Accept' => 'application/json'} ).
+            will_respond_with(
+              status: 200,
+              headers: {'Content-Type' => 'application/json;charset=utf-8'},
+              body: {name: 'Russ'}
+            )
+        end
+
+        it "returns the seahawk" do
+          expect(AnimalServiceClient.find_seahawk_by_name("Russ")).to eq ZooApp::Animals::Seahawk.new(name: 'Russ')
+        end
+      end
+
       context "when a seahawk by the given name does not exist" do
 
         before do
@@ -116,11 +136,11 @@ module ZooApp
             will_respond_with(
               status: 500,
               headers: { 'Content-Type' => 'application/json;charset=utf-8'},
-              body: {error: 'Argh!!!'})
+              body: {error: 'Kawww!!!'})
         end
 
         it "raises an error" do
-          expect{ AnimalServiceClient.find_seahawk_by_name("Geno") }.to raise_error /Argh/
+          expect{ AnimalServiceClient.find_seahawk_by_name("Geno") }.to raise_error /Kawww/
         end
       end
     end
