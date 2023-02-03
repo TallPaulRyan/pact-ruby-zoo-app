@@ -6,11 +6,9 @@ $: << './lib'
 RSpec::Core::RakeTask.new(:spec)
 
 PactBroker::Client::PublicationTask.new do | task |
-  require 'zoo_app/version'
-  short_git_hash=`git rev-parse --short HEAD`.strip
-  task.consumer_version = "#{short_git_hash}-#{ZooApp::VERSION}"
+  task.consumer_version = ENV['GIT_COMMIT'] || `git rev-parse --short --verify HEAD`.strip
   task.pact_broker_base_url = 'http://pact-broker:9292'
-  # task.branch =`git branch --show-current`.strip
+  task.branch = ENV['GIT_BRANCH'] || `git name-rev --name-only HEAD`.strip
   # task.tag_with_git_branch = true|false # Superseeded by first class `branch` support
   # task.tags = ["dev"] # optional
   # task.build_url = ENV["CI_BUILD_URL"] # Supported from v1.59.0
