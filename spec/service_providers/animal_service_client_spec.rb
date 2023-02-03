@@ -161,7 +161,7 @@ module ZooApp
         end
 
         it "returns the insect" do
-          expect(AnimalServiceClient.find_alligator_by_name("Mary")).to eq ZooApp::Animals::Alligator.new(name: 'Roy')
+          expect(AnimalServiceClient.find_insect_by_name("Roy")).to eq ZooApp::Animals::Insect.new(name: 'Roy')
         end
       end
     end
