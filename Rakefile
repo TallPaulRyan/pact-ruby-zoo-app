@@ -26,7 +26,6 @@ end
 task :default => :spec
 
 namespace :env do
-
   desc 'list existing envs.'
   task :list do
     p "Listing exsiting environments via pact-broker list-environments."
